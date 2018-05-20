@@ -1,0 +1,6 @@
+
+# raw data folder
+data/
+keras/
+
+*.h5

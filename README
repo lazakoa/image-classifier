@@ -1,0 +1,19 @@
+
+# Setting up python
+
+module avail python
+module load version
+
+
+# virtualenv
+
+source ENV/bin/activate
+deactivate
+
+# Everything is starting to work, need to figure out what the fuck is
+# going on with tensorflow.
+
+Idea:
+
+try pip install tensorflow-gpu while a slurm interactive session isn't
+running.
