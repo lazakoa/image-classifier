@@ -3,6 +3,7 @@
 from keras import layers
 from keras import models
 from keras.layers.advanced_activations import LeakyReLU
+from keras.callbacks import EarlyStopping
 
 act = LeakyReLU(alpha=0.3)
 
@@ -20,7 +21,7 @@ model.add(layers.Conv2D(128, (3, 3), activation='relu'))
 model.add(layers.MaxPooling2D((2, 2)))
 model.add(layers.Flatten())
 
-model.add(layers.Dense(512))
+model.add(layers.Dense(1024))
 #model.add(layers.Dropout(.35))
 model.add(act) #, activation='relu'))
 model.add(layers.Dense(256, activation='relu'))
@@ -68,9 +69,20 @@ for data_batch, labels_batch in train_generator:
     print('labels batch shape:', labels_batch.shape)
     break
 
+stop_early = EarlyStopping(monitor="val_loss",
+                            min_delta=0,
+                            patience=2,
+                            verbose=0,
+                            mode="auto")
+                            #baseline=None)
+
 history = model.fit_generator(
       train_generator,
       steps_per_epoch=148,
-      epochs=40,
+      epochs=20,
       validation_data=validation_generator,
-      validation_steps=33)
+      validation_steps=33,
+      callbacks=[stop_early])
+
+
+model.save("number-opt-7.h5")

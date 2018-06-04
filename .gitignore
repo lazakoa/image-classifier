@@ -2,5 +2,8 @@
 # raw data folder
 data/
 keras/
+TrueScoringTransfer/
 
 *.h5
+
+*.db
