@@ -13,7 +13,35 @@ deactivate
 # Everything is starting to work, need to figure out what the fuck is
 # going on with tensorflow.
 
-Idea:
+# June 13th Meeting
 
-try pip install tensorflow-gpu while a slurm interactive session isn't
-running.
+testOld - 89%
+rescored/test both positive and negatives have been rescored
+
+# June 14th  
+
+The new batch are in png form, and they are in the following location
+
+data/newRescored/pngsNeedConvert
+
+The fully sorted and rescored data is here:
+
+	data/newRescored
+with the train and test sets in that dir. 
+
+Everything has been fully renamed correctly as in everything in a pos directory is n1,
+ and everything in a neg is n0.
+
+* convert pngs add them to the full dataset, and then re-run the model. 
+You should have now 9K images.
+
+* watch out for any Thumbs.db files, i tried my best to get rid of them but they are leftover files 
+from creating a shared folder between Windows and Linux (Windoge likes to create these files for some reason).
+
+# June 15th 
+
+Data is now fully converted over to jpgs in a dir location:
+data/newRescored/pngsNeedConvert/raw-data
+
+
+

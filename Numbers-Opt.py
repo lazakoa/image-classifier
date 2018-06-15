@@ -36,8 +36,8 @@ model.compile(loss='binary_crossentropy',
               optimizer=optimizers.RMSprop(lr=1e-4),
               metrics=['acc'])
 
-train_dir = 'data/train'
-validation_dir = 'data/test'
+train_dir = 'data/newRescored/train'
+validation_dir = 'data/newRescored/test'
 
 from keras.preprocessing.image import ImageDataGenerator
 
@@ -71,7 +71,7 @@ for data_batch, labels_batch in train_generator:
 
 stop_early = EarlyStopping(monitor="val_loss",
                             min_delta=0,
-                            patience=2,
+                            patience=7,
                             verbose=0,
                             mode="auto")
                             #baseline=None)

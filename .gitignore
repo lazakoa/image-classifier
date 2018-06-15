@@ -7,3 +7,5 @@ TrueScoringTransfer/
 *.h5
 
 *.db
+
+*.out
