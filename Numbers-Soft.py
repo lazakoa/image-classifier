@@ -1,10 +1,9 @@
 #!/bin/env python
-
+import keras
 from keras import layers
 from keras import models
 from keras.layers.advanced_activations import LeakyReLU
 from keras.callbacks import EarlyStopping
-import keras 
 
 act = LeakyReLU(alpha=0.6)
 
@@ -13,6 +12,7 @@ model.add(layers.Conv2D(32, (3, 3), activation='relu',
                         input_shape=(200, 200, 1)))
 model.add(layers.MaxPooling2D((2, 2)))
 model.add(layers.Conv2D(64, (3, 3), activation='relu'))
+model.add(layers.Dropout(.35))
 model.add(layers.MaxPooling2D((2, 2)))
 model.add(layers.Conv2D(128, (3, 3), activation='relu'))
 model.add(layers.Dropout(.35))
@@ -30,14 +30,14 @@ model.add(layers.Dense(1024))#,activation='relu'))
 model.add(act) #, activation='relu'))
 model.add(layers.Dense(256, activation='relu'))
 #model.add(layers.Dropout(.35))
-model.add(layers.Dense(1, activation='sigmoid'))
+model.add(layers.Dense(2, activation='softmax'))
 
 model.summary()
 
 from keras import optimizers
 
-model.compile(loss='binary_crossentropy',
-              optimizer=keras.optimizers.Adadelta(), #optimizers.RMSprop(lr=1e-4),
+model.compile(loss=keras.losses.categorical_crossentropy,
+              optimizer= keras.optimizers.Adadelta(),#optimizers.RMSprop(lr=1e-4),
               metrics=['accuracy'])
 
 train_dir = 'data/train'
@@ -58,14 +58,14 @@ train_generator = train_datagen.flow_from_directory(
         color_mode="grayscale",
         batch_size=40,
         # Since we use binary_crossentropy loss, we need binary labels
-        class_mode='binary')
+        class_mode='categorical')
 
 validation_generator = test_datagen.flow_from_directory(
         validation_dir,
         target_size=(200, 200),
         color_mode="grayscale",
         batch_size=20,
-        class_mode='binary')
+        class_mode='categorical')
 
 
 for data_batch, labels_batch in train_generator:
@@ -75,7 +75,7 @@ for data_batch, labels_batch in train_generator:
 
 stop_early = EarlyStopping(monitor="val_loss",
                             min_delta=0,
-                            patience=4,
+                            patience=6,
                             verbose=0,
                             mode="auto")
                             #baseline=None)
@@ -83,7 +83,7 @@ stop_early = EarlyStopping(monitor="val_loss",
 history = model.fit_generator(
       train_generator,
       steps_per_epoch=188,
-      epochs=20,
+      epochs=25,
       validation_data=validation_generator,
       validation_steps=32.6,
       callbacks=[stop_early])
