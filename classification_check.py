@@ -34,6 +34,7 @@ def pathPad(path):
     else:
         return path + '/'
 
+# image loading and preparation
 def imageFormat(path, size=(200,200)):
     im = imageio.imread(path)
 
@@ -44,11 +45,39 @@ def imageFormat(path, size=(200,200)):
     im = np.expand_dims(im, axis=0)
     im = np.expand_dims(im, axis=3)
     return im
+
+# threshold factory
+def threshold(x):
+
+    def temp(i):
+        if i >= x:
+            return 1
+        else:
+            return 0
+    return temp
      
-args = parser.parse_args()
-model = load_model(args.model)
-path = pathPad(args.dir)
-flag = args.flag
-csvout = args.csv
+if __name__ == "__main__":
+    args = parser.parse_args()
+    model = load_model(args.model)
+    path = pathPad(args.dir)
+    flag = args.flag
+    csvout = args.csv
 
+    thres50 = threshold(.50)
 
+    with open(csv, 'w', newline='') as f:
+        writer = csv.writer(f)
+        images = listdir(path)
+
+        for image in images:
+            line = [] # contents of the csv file
+            line.append(image)
+
+            im = imageFormat(path + image)
+            pred = thres50(model.predict(im)[0][0])
+            line.append(pred)
+
+            if flag in image and pred == 0:
+                writer.writerow(line)
+            if flag not in image and pred == 1:
+                writer.writerow(line)
