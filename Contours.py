@@ -75,7 +75,7 @@ for data_batch, labels_batch in train_generator:
 
 stop_early = EarlyStopping(monitor="val_loss",
                             min_delta=0,
-                            patience=4,
+                            patience=3,
                             verbose=0,
                             mode="auto")
                             #baseline=None)
@@ -89,4 +89,4 @@ history = model.fit_generator(
       callbacks=[stop_early])
 
 
-model.save("number-opt-7.h5")
+model.save("contour-opt-7.h5")

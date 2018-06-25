@@ -63,3 +63,7 @@ usage:
 Means to seperate positive examples that have n1 and negative examples that 
 don't. .93 means to use 93% of the data as training.
 
+
+TODO:
+
+script that checks for false positives and false negatives.
