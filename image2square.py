@@ -12,7 +12,6 @@ import sys
     image2square.py srcdir targetdir
 """
 
-
 def convertImages(srcdir, targetdir):
 
     for image in listdir(srcdir):
