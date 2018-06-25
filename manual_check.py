@@ -10,6 +10,7 @@ from keras.models import load_model
 import sys
 from PIL import Image
 import numpy as np
+from skimage import color
 
 class Images:
 
@@ -19,7 +20,7 @@ class Images:
         self.model = load_model(model)
         return None
 
-    def select(self, number=100):
+    def select(self, number=489):
         # works
         self.images = [] 
         items = listdir(path)
@@ -45,6 +46,10 @@ class Images:
         self.classified = []
         for image in self.images:
             im = imageio.imread(path + image)
+
+            if len(im.shape) == 3:
+                im = color.rgb2gray(im)
+
             im = misc.imresize(im, (200, 200))
             im = np.expand_dims(im, axis=0)
             im = np.expand_dims(im, axis=3)

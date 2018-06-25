@@ -9,3 +9,9 @@ TrueScoringTransfer/
 *.db
 
 *.out
+
+*.csv
+
+negImages/
+
+posImages/

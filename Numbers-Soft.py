@@ -12,10 +12,10 @@ model.add(layers.Conv2D(32, (3, 3), activation='relu',
                         input_shape=(200, 200, 1)))
 model.add(layers.MaxPooling2D((2, 2)))
 model.add(layers.Conv2D(64, (3, 3), activation='relu'))
-model.add(layers.Dropout(.35))
+#model.add(layers.Dropout(.35))
 model.add(layers.MaxPooling2D((2, 2)))
 model.add(layers.Conv2D(128, (3, 3), activation='relu'))
-model.add(layers.Dropout(.35))
+#model.add(layers.Dropout(.35))
 model.add(layers.MaxPooling2D((2, 2)))
 model.add(layers.Conv2D(128, (3, 3), activation='relu'))
 model.add(layers.Dropout(.35))
@@ -40,8 +40,8 @@ model.compile(loss=keras.losses.categorical_crossentropy,
               optimizer= keras.optimizers.Adadelta(),#optimizers.RMSprop(lr=1e-4),
               metrics=['accuracy'])
 
-train_dir = 'data/train'
-validation_dir = 'data/test'
+train_dir = 'data/trainC'
+validation_dir = 'data/testC'
 
 from keras.preprocessing.image import ImageDataGenerator
 
