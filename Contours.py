@@ -10,7 +10,7 @@ act = LeakyReLU(alpha=0.6)
 
 model = models.Sequential()
 model.add(layers.Conv2D(32, (3, 3), activation='relu',
-                        input_shape=(200, 200, 1)))
+                        input_shape=(175, 175, 1)))
 model.add(layers.MaxPooling2D((2, 2)))
 model.add(layers.Conv2D(64, (3, 3), activation='relu'))
 model.add(layers.MaxPooling2D((2, 2)))
@@ -54,7 +54,7 @@ train_generator = train_datagen.flow_from_directory(
         train_dir,
         # All images will be resized to 156, 126. Size set manually, 
         #depends on data.
-        target_size=(200, 200),
+        target_size=(175, 175),
         color_mode="grayscale",
         batch_size=40,
         # Since we use binary_crossentropy loss, we need binary labels
@@ -62,7 +62,7 @@ train_generator = train_datagen.flow_from_directory(
 
 validation_generator = test_datagen.flow_from_directory(
         validation_dir,
-        target_size=(200, 200),
+        target_size=(175, 175),
         color_mode="grayscale",
         batch_size=20,
         class_mode='binary')
@@ -75,7 +75,7 @@ for data_batch, labels_batch in train_generator:
 
 stop_early = EarlyStopping(monitor="val_loss",
                             min_delta=0,
-                            patience=3,
+                            patience=4,
                             verbose=0,
                             mode="auto")
                             #baseline=None)

@@ -50,7 +50,7 @@ class Images:
             if len(im.shape) == 3:
                 im = color.rgb2gray(im)
 
-            im = misc.imresize(im, (200, 200))
+            im = misc.imresize(im, (175, 175))
             im = np.expand_dims(im, axis=0)
             im = np.expand_dims(im, axis=3)
             self.classified.append([image, 
