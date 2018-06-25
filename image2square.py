@@ -12,7 +12,7 @@ import sys
     image2square.py srcdir targetdir
 """
 
-def convertImages(srcdir, targetdir):
+def convertImages(srcdir, targetdir, size):
 
     for image in listdir(srcdir):
         print("Processing: " + image)
@@ -25,7 +25,7 @@ def convertImages(srcdir, targetdir):
 
             side = max(im.size[0], im.size[1])
 
-        if side >= 200:
+        if side >= size:
             run(['convert', srcdir + '/' + image, '-gravity', 'center',
                 '-extent', str(side) + 'x' + str(side),
                 targetdir + '/' + image])
@@ -37,5 +37,5 @@ if __name__ == "__main__":
     src = sys.argv[1]
     target = sys.argv[2]
     print('Beginning to conver images')
-    convertImages(src, target)
+    convertImages(src, target, sys.argv[3])
     print('Done')
