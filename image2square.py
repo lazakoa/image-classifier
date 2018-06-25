@@ -25,9 +25,12 @@ def convertImages(srcdir, targetdir):
 
             side = max(im.size[0], im.size[1])
 
-        run(['convert', srcdir + '/' + image, '-gravity', 'center',
-            '-extent', str(side) + 'x' + str(side),
-            targetdir + '/' + image])
+        if side >= 200:
+            run(['convert', srcdir + '/' + image, '-gravity', 'center',
+                '-extent', str(side) + 'x' + str(side),
+                targetdir + '/' + image])
+        else:
+            pass
 
 if __name__ == "__main__":
     print('test')

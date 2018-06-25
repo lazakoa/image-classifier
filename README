@@ -10,14 +10,6 @@ module load version
 source ENV/bin/activate
 deactivate
 
-# Everything is starting to work, need to figure out what the fuck is
-# going on with tensorflow.
-
-# June 13th Meeting
-
-testOld - 89%
-rescored/test both positive and negatives have been rescored
-
 # June 14th  
 
 The new batch are in png form, and they are in the following location
@@ -35,8 +27,6 @@ Everything has been fully renamed correctly as in everything in a pos directory 
 * convert pngs add them to the full dataset, and then re-run the model. 
 You should have now 9K images.
 
-* watch out for any Thumbs.db files, i tried my best to get rid of them but they are leftover files 
-from creating a shared folder between Windows and Linux (Windoge likes to create these files for some reason).
 
 # June 15th 
 
@@ -44,4 +34,32 @@ Data is now fully converted over to jpgs in a dir location:
 data/newRescored/pngsNeedConvert/raw-data
 
 
+# June 15th 
+
+renamed some directories, everything is basically lower case now.
+
+* wrote a new image conversion script image2square which pads a image
+up to a square based on largest dimension.
+* ran the conversion on all the png
+* split the converted images into pos and neg, and 
+* the new directory to be trained from can be found in.
+
+	data/new-rescored/train
+
+* new images were only added to the training directory not test.
+
+June 16th 
+
+All images less than 200x200 have been removed, keep this in mind for future. 
+
+June 24th
+
+The script datasetup takes two parameters now.
+
+usage:
+
+./datasetup n1 .93, 
+
+Means to seperate positive examples that have n1 and negative examples that 
+don't. .93 means to use 93% of the data as training.
 

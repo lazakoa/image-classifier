@@ -40,8 +40,8 @@ model.compile(loss='binary_crossentropy',
               optimizer=keras.optimizers.Adadelta(), #optimizers.RMSprop(lr=1e-4),
               metrics=['accuracy'])
 
-train_dir = 'data/train'
-validation_dir = 'data/test'
+train_dir = 'data/trainC'
+validation_dir = 'data/testC'
 
 from keras.preprocessing.image import ImageDataGenerator
 

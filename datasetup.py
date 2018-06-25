@@ -14,7 +14,9 @@ from random import shuffle
 from math import ceil
 import shutil
 
-files = listdir('data/raw-data')
+from sys import argv
+
+files = listdir('data/images')
 
 def segmentDataSet(data, target='c1n1h1'):
     """ Takes a list of files, and spits out two lists. One list for positive
@@ -33,12 +35,19 @@ def segmentDataSet(data, target='c1n1h1'):
     return pos, neg
 
 #pos, neg = segmentDataSet(files) 
-def splitData(data, ratio=.9):
+def splitData(data, ratio=.93):
     temp = ceil(len(data) * ratio)
     return data[:temp], data[temp:]
 
+
+"""
+    usage:
+        
+    ./datasetup [n1|n0|c1|c0|h1|h0] ratio
+"""
+
 if __name__ == "__main__":
-    pos, neg = segmentDataSet(files, 'n1')
+    pos, neg = segmentDataSet(files, argv[1])
     ans = str(input('Regenerate train and test directories? [y/n] '))
     if ans in ['Y', 'y', 'yes', 'YES']:
         if 'train' in listdir('data') and 'test' in listdir('data'):
@@ -50,8 +59,8 @@ if __name__ == "__main__":
 
         shuffle(pos), shuffle(neg)
         
-        trainPos, testPos = splitData(pos)
-        trainNeg, testNeg = splitData(neg)
+        trainPos, testPos = splitData(pos, argv[2])
+        trainNeg, testNeg = splitData(neg, argv[2])
         
         train = trainPos + trainNeg
         test = testPos + testNeg
