@@ -14,6 +14,8 @@ import sys
 
 def convertImages(srcdir, targetdir, size):
 
+    size = int(size)
+
     for image in listdir(srcdir):
         print("Processing: " + image)
 
@@ -25,11 +27,7 @@ def convertImages(srcdir, targetdir, size):
 
             side = max(im.size[0], im.size[1])
 
-<<<<<<< HEAD
-        if side >= 175:
-=======
         if side >= size:
->>>>>>> df8c0db69b6e54bb72389103458f1cbed3b51d3b
             run(['convert', srcdir + '/' + image, '-gravity', 'center',
                 '-extent', str(side) + 'x' + str(side),
                 targetdir + '/' + image])

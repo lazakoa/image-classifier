@@ -59,8 +59,8 @@ if __name__ == "__main__":
 
         shuffle(pos), shuffle(neg)
         
-        trainPos, testPos = splitData(pos, argv[2])
-        trainNeg, testNeg = splitData(neg, argv[2])
+        trainPos, testPos = splitData(pos, float(argv[2]))
+        trainNeg, testNeg = splitData(neg, float(argv[2]))
         
         train = trainPos + trainNeg
         test = testPos + testNeg

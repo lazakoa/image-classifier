@@ -20,7 +20,7 @@ class Images:
         self.model = load_model(model)
         return None
 
-    def select(self, number=489):
+    def select(self, number=78):
         # works
         self.images = [] 
         items = listdir(path)

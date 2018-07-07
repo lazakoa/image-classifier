@@ -10,18 +10,18 @@ act = LeakyReLU(alpha=0.6)
 
 model = models.Sequential()
 model.add(layers.Conv2D(32, (3, 3), activation='relu',
-                        input_shape=(175, 175, 1)))
+                        input_shape=(200, 200, 1)))
 model.add(layers.MaxPooling2D((2, 2)))
 model.add(layers.Conv2D(64, (3, 3), activation='relu'))
 model.add(layers.MaxPooling2D((2, 2)))
 model.add(layers.Conv2D(128, (3, 3), activation='relu'))
-model.add(layers.Dropout(.35))
+#model.add(layers.Dropout(.35))
+#model.add(layers.MaxPooling2D((2, 2)))
+model.add(layers.Conv2D(128, (3, 3), activation='relu'))
+#model.add(layers.Dropout(.35))
 model.add(layers.MaxPooling2D((2, 2)))
 model.add(layers.Conv2D(128, (3, 3), activation='relu'))
-model.add(layers.Dropout(.35))
-model.add(layers.MaxPooling2D((2, 2)))
-model.add(layers.Conv2D(128, (3, 3), activation='relu'))
-model.add(layers.Dropout(.35))
+#model.add(layers.Dropout(.35))
 model.add(layers.MaxPooling2D((2, 2)))
 model.add(layers.Flatten())
 
@@ -40,8 +40,8 @@ model.compile(loss='binary_crossentropy',
               optimizer=keras.optimizers.Adadelta(), #optimizers.RMSprop(lr=1e-4),
               metrics=['accuracy'])
 
-train_dir = 'data/trainC'
-validation_dir = 'data/testC'
+train_dir = 'data/train'
+validation_dir = 'data/test'
 
 from keras.preprocessing.image import ImageDataGenerator
 
@@ -75,7 +75,7 @@ for data_batch, labels_batch in train_generator:
 
 stop_early = EarlyStopping(monitor="val_loss",
                             min_delta=0,
-                            patience=4,
+                            patience=10,
                             verbose=0,
                             mode="auto")
                             #baseline=None)
