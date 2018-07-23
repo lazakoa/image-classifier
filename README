@@ -48,11 +48,11 @@ up to a square based on largest dimension.
 
 * new images were only added to the training directory not test.
 
-June 16th 
+## June 16th 
 
 All images less than 200x200 have been removed, keep this in mind for future. 
 
-June 24th
+## June 24th
 
 The script datasetup takes two parameters now.
 
@@ -64,6 +64,17 @@ Means to seperate positive examples that have n1 and negative examples that
 don't. .93 means to use 93% of the data as training.
 
 
-TODO:
+## July 12th 
 
-script that checks for false positives and false negatives.
+data-06-29-18 batch added, needs to be processed. 
+
+## July 17th. 
+
+
+Old images (unpadded but wrongly labelled) are in data/unrescored/raw-data 
+
+New Images (padded but correctly labelled) are in images 
+
+Problem, there are 100 more in images, that are not in data/unrescored/raw-data. delete these. 
+
+

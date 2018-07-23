@@ -16,7 +16,8 @@ import shutil
 
 from sys import argv
 
-files = listdir('data/images')
+files = listdir('data/images-250')
+# files = listdir('data/images')
 
 def segmentDataSet(data, target='c1n1h1'):
     """ Takes a list of files, and spits out two lists. One list for positive

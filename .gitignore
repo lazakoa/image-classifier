@@ -12,6 +12,8 @@ TrueScoringTransfer/
 
 *.csv
 
+moka/
+
 negImages/
 
 posImages/

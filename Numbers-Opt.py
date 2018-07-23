@@ -15,13 +15,13 @@ model.add(layers.MaxPooling2D((2, 2)))
 model.add(layers.Conv2D(64, (3, 3), activation='relu'))
 model.add(layers.MaxPooling2D((2, 2)))
 model.add(layers.Conv2D(128, (3, 3), activation='relu'))
-model.add(layers.Dropout(.35))
+#model.add(layers.Dropout(.35))
 model.add(layers.MaxPooling2D((2, 2)))
 model.add(layers.Conv2D(128, (3, 3), activation='relu'))
-model.add(layers.Dropout(.35))
+#model.add(layers.Dropout(.35))
 model.add(layers.MaxPooling2D((2, 2)))
 model.add(layers.Conv2D(128, (3, 3), activation='relu'))
-model.add(layers.Dropout(.35))
+#model.add(layers.Dropout(.35))
 model.add(layers.MaxPooling2D((2, 2)))
 model.add(layers.Flatten())
 
@@ -82,10 +82,10 @@ stop_early = EarlyStopping(monitor="val_loss",
 
 history = model.fit_generator(
       train_generator,
-      steps_per_epoch=188,
+      steps_per_epoch=246,
       epochs=20,
       validation_data=validation_generator,
-      validation_steps=32.6,
+      validation_steps=36,
       callbacks=[stop_early])
 
 

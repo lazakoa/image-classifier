@@ -8,18 +8,10 @@ from keras.callbacks import EarlyStopping
 act = LeakyReLU(alpha=0.6)
 
 model = models.Sequential()
-model.add(layers.Conv2D(32, (3, 3), activation='relu',
+model.add(layers.LocallyConnected2D(32, (5, 5), activation='relu',
                         input_shape=(200, 200, 1)))
-model.add(layers.MaxPooling2D((2, 2)))
-model.add(layers.Conv2D(64, (3, 3), activation='relu'))
+model.add(layers.MaxPooling2D((3, 3)))
 #model.add(layers.Dropout(.35))
-model.add(layers.MaxPooling2D((2, 2)))
-model.add(layers.Conv2D(128, (3, 3), activation='relu'))
-#model.add(layers.Dropout(.35))
-model.add(layers.MaxPooling2D((2, 2)))
-model.add(layers.Conv2D(128, (3, 3), activation='relu'))
-model.add(layers.Dropout(.35))
-model.add(layers.MaxPooling2D((2, 2)))
 model.add(layers.Conv2D(128, (3, 3), activation='relu'))
 model.add(layers.Dropout(.35))
 model.add(layers.MaxPooling2D((2, 2)))
@@ -40,8 +32,8 @@ model.compile(loss=keras.losses.categorical_crossentropy,
               optimizer= keras.optimizers.Adadelta(),#optimizers.RMSprop(lr=1e-4),
               metrics=['accuracy'])
 
-train_dir = 'data/trainC'
-validation_dir = 'data/testC'
+train_dir = 'data/train'
+validation_dir = 'data/sb-data-200'
 
 from keras.preprocessing.image import ImageDataGenerator
 
