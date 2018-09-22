@@ -77,4 +77,15 @@ New Images (padded but correctly labelled) are in images
 
 Problem, there are 100 more in images, that are not in data/unrescored/raw-data. delete these. 
 
+# September 14th
 
+Do a per class precision, recall, and *accuracy* <- doctors on a
+per class basis.
+
+Example of what is needed
+
+_| C | N | H
+P|   |   |   <- Positive ACC
+N|   |   |   <- Negative ACC
+T|   |   |   <- Total ACC
+N|   |   |   <- Number of images
